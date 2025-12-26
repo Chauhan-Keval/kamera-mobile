@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kamera/Screens/LoginScreen.dart';
+
+import 'Screens/RegisterScreen.dart';
 void main() {
   runApp(const KameraApp());
 }
@@ -10,17 +13,9 @@ class KameraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: LoginScreen(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
 
