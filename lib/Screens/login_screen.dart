@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kamera/Screens/RegisterScreen.dart';
+import 'package:kamera/Screens/forgot_password_screen.dart';
+import 'package:kamera/Screens/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -93,12 +94,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         icon: Icons.lock,
                         isPassword: true,
                       ),
-                      SizedBox(height: 22),
+                      SizedBox(height: 5),
                       //forget Password
                       Align(
                         alignment: AlignmentGeometry.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                          },
                           child: Text(
                             "Forget Password?",
                             style: TextStyle(
@@ -108,6 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 20,),
                       SizedBox(
                         width: double.infinity,
                         height: 56,
