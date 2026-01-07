@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kamera/Screens/forgot_password_screen.dart';
 import 'package:kamera/Screens/register_screen.dart';
 
+import '../components/custom_textfield.dart';
+import '../components/primary_button.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   @override
@@ -59,17 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          "Welcome!",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25),
+                      SizedBox(height: 10),
 
                       //Email
                       Text(
@@ -77,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
                       SizedBox(height: 10),
-                      buildTextField(
+                      CustomTextField(
                         hint: "hello@kamera.app",
                         icon: Icons.email,
                       ),
@@ -89,8 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
                       SizedBox(height: 10),
-                      buildTextField(
-                        hint: "Password ",
+                      CustomTextField(
+                        hint: "Password",
                         icon: Icons.lock,
                         isPassword: true,
                       ),
@@ -112,28 +105,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 20,),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF1677FF),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                            elevation: 8,
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Login",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+
+                      //Login Button
+                      PrimaryButton(
+                        title: "Login",
+                        onPressed: () {
+                        },
                       ),
+
 
                       const SizedBox(height: 30),
 
@@ -202,45 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField({
-    required String hint,
-    required IconData icon,
-    bool isPassword = false,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: TextField(
-        obscureText: isPassword ? hidePassword : false,
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: Color(0xFF1677FF)),
-          suffixIcon: isPassword
-              ? IconButton(
-                  icon: Icon(
-                    hidePassword ? Icons.visibility_off : Icons.visibility,
-                  ),
-                  onPressed: () {
-                    setState(() => hidePassword = !hidePassword);
-                  },
-                )
-              : null,
-          hintText: hint,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 15),
         ),
       ),
     );

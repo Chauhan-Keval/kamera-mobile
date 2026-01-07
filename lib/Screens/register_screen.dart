@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kamera/Screens/LoginScreen.dart';
+import 'package:kamera/Screens/login_screen.dart';
+
+import '../components/custom_textfield.dart';
+import '../components/primary_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -67,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Column(
                     children: [
                       // Name
-                      buildTextField(
+                      CustomTextField(
                         hint: "Full Name",
                         icon: Icons.person,
                       ),
@@ -75,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 20),
 
                       //Email
-                      buildTextField(
+                      CustomTextField(
                         hint: "Email Address",
                         icon: Icons.email,
                       ),
@@ -83,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 20),
 
                       //Password
-                      buildTextField(
+                      CustomTextField(
                         hint: "Password",
                         icon: Icons.lock,
                         isPassword: true,
@@ -125,28 +128,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 56,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF1677FF),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(28),
-                            ),
-                            elevation: 8,
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Register",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+
+                      //Register Button
+                      PrimaryButton(
+                        title: "Register",
+                        onPressed: () {
+                        },
                       ),
+
 
 
                       const SizedBox(height: 30),
@@ -209,44 +198,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 40),
             ],
           ),
-        ),
-      ),
-    );
-  }
-  Widget buildTextField({
-    required String hint,
-    required IconData icon,
-    bool isPassword = false,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: TextField(
-        obscureText: isPassword ? hidePassword : false,
-        decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: Color(0xFF1677FF)),
-          suffixIcon: isPassword
-              ? IconButton(
-            icon: Icon(
-              hidePassword ? Icons.visibility_off : Icons.visibility,
-            ),
-            onPressed: () {
-              setState(() => hidePassword = !hidePassword);
-            },
-          )
-              : null,
-          hintText: hint,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 18),
         ),
       ),
     );
