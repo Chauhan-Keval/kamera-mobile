@@ -109,7 +109,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                /// Help Link
+                // Help Link
                 TextButton(
                   onPressed: () {},
                   child: const Text(
