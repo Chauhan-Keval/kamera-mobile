@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kamera/Screens/forgot_password_screen.dart';
 import 'package:kamera/Screens/register_screen.dart';
+import 'package:kamera/components/app_bottom_nav.dart';
 
 import '../components/custom_textfield.dart';
 import '../components/primary_button.dart';
@@ -18,9 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFFEAF4FF), Color(0xFFD6E9FF)],
@@ -28,162 +28,163 @@ class _LoginScreenState extends State<LoginScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             children: [
-              SizedBox(height: 80),
+              const SizedBox(height: 40),
+
+              // Logo
               Text(
                 "KAMERA",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF1677FF),
                 ),
               ),
-              const SizedBox(height: 0),
               const Text(
                 "Your portal to cinema",
+                textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.black54, fontSize: 16),
               ),
-              SizedBox(height: 15),
+
+              const SizedBox(height: 20),
+
+              // Login Card
               Container(
-                height: 600,
-                width: 500,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 30,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
 
-                      //Email
-                      Text(
-                        "Email Address",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                      SizedBox(height: 10),
-                      CustomTextField(
-                        hint: "hello@kamera.app",
-                        icon: Icons.email,
-                      ),
-                      SizedBox(height: 25),
+                    // Email
+                    const Text("Email Address"),
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      hint: "hello@kamera.app",
+                      icon: Icons.email,
+                    ),
 
-                      //Password
-                      Text(
-                        "Password",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                      SizedBox(height: 10),
-                      CustomTextField(
-                        hint: "Password",
-                        icon: Icons.lock,
-                        isPassword: true,
-                      ),
-                      SizedBox(height: 5),
-                      //forget Password
-                      Align(
-                        alignment: AlignmentGeometry.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPassword()));
-                          },
-                          child: Text(
-                            "Forget Password?",
-                            style: TextStyle(
-                              color: Color(0xFF1677FF),
-                              fontWeight: FontWeight.bold,
+                    const SizedBox(height: 25),
+
+                    // Password
+                    const Text("Password"),
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      hint: "Password",
+                      icon: Icons.lock,
+                      isPassword: true,
+                    ),
+
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ForgotPassword(),
                             ),
+                          );
+                        },
+                        child: const Text(
+                          "Forget Password?",
+                          style: TextStyle(
+                            color: Color(0xFF1677FF),
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      SizedBox(height: 20,),
-
-                      //Login Button
-                      PrimaryButton(
-                        title: "Login",
-                        onPressed: () {
-                        },
-                      ),
-
-
-                      const SizedBox(height: 30),
-
-                      //Divider
-                      Row(
-                        children: const [
-                          Expanded(child: Divider()),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(
-                              "Or continue with",
-                              style: TextStyle(color: Colors.black45),
-                            ),
-                          ),
-                          Expanded(child: Divider()),
-                        ],
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      //Social Login
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          socialButton(FontAwesomeIcons.google, "Google"),
-                          const SizedBox(width: 16),
-                          socialButton(FontAwesomeIcons.apple, "Apple"),
-                          const SizedBox(width: 16),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 50),
-              // Login Link
-              Align(
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(fontSize: 18),
                     ),
-                    GestureDetector(
-                      onTap: () {
+
+                    const SizedBox(height: 10),
+
+                    // Login Button
+                    PrimaryButton(
+                      title: "Login",
+                      onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterScreen(),
+                            builder: (_) => AppBottomNav(),
                           ),
                         );
                       },
-                      child: const Text(
-                        "Ragister Now ",
-                        style: TextStyle(
-                          color: Color(0xFF1677FF),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                    ),
+
+                    const SizedBox(height: 25),
+
+                    // Divider
+                    Row(
+                      children: const [
+                        Expanded(child: Divider()),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            "Or continue with",
+                            style: TextStyle(color: Colors.black45),
+                          ),
                         ),
-                      ),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // Social Buttons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        socialButton(FontAwesomeIcons.google, "Google"),
+                        const SizedBox(width: 16),
+                        socialButton(FontAwesomeIcons.apple, "Apple"),
+                      ],
                     ),
                   ],
                 ),
               ),
+
+              const SizedBox(height: 30),
+
+              // Register
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? "),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => RegisterScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Register Now",
+                      style: TextStyle(
+                        color: Color(0xFF1677FF),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
     );
+
   }
 
   Widget socialButton(IconData icon, String label) {
