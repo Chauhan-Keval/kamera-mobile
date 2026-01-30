@@ -14,9 +14,9 @@ class AppBottomNav extends StatefulWidget {
 }
 
 class _AppBottomNavState extends State<AppBottomNav> {
-  int _currentIndex = 0;
+  int currentIndex = 0;
 
-  final List<Widget> _pages = [
+  final List<Widget> pages = [
     const HomeScreen(),
     const ExploreScreen(),
     const DiscoverPeopleScreen(),
@@ -41,13 +41,13 @@ class _AppBottomNavState extends State<AppBottomNav> {
             ),
           );
         },
-        child: _pages[_currentIndex],
+        child: pages[currentIndex],
       ),
-        bottomNavigationBar: _bottomNavBar()
+        bottomNavigationBar: bottomNavBar()
     );
   }
 
-  Widget _bottomNavBar() {
+  Widget bottomNavBar() {
     return Container(
       height: 72,
       margin: const EdgeInsets.all(16),
@@ -64,21 +64,21 @@ class _AppBottomNavState extends State<AppBottomNav> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItem(Icons.home, 0),
-          _navItem(Icons.explore, 1),
-          _navItem(Icons.group, 2),
-          _navItem(Icons.bookmark_border, 3),
-          _navItem(Icons.person_outline, 4),
+          navItem(Icons.home, 0),
+          navItem(Icons.explore, 1),
+          navItem(Icons.group, 2),
+          navItem(Icons.bookmark_border, 3),
+          navItem(Icons.person_outline, 4),
         ],
       ),
     );
   }
 
-  Widget _navItem(IconData icon, int index) {
-    final isSelected = _currentIndex == index;
+  Widget navItem(IconData icon, int index) {
+    final isSelected = currentIndex == index;
 
     return GestureDetector(
-      onTap: () => setState(() => _currentIndex = index),
+      onTap: () => setState(() => currentIndex = index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

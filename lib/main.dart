@@ -18,7 +18,7 @@ class KameraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AppBottomNav(),
+      home: LoginScreen(),
     );
   }
 }
