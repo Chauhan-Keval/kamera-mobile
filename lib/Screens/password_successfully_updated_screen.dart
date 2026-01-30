@@ -39,7 +39,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 40),
 
-                        /// App Name
+                        // App Name
                         const Text(
                           "KAMERA",
                           style: TextStyle(
@@ -52,7 +52,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
 
                         const SizedBox(height: 60),
 
-                        /// Success Icon
+                        // Success Icon
                         Container(
                           width: 130,
                           height: 130,
@@ -83,7 +83,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
 
                         const SizedBox(height: 50),
 
-                        /// Title
+                        // Title
                         const Text(
                           "Password Updated",
                           textAlign: TextAlign.center,
@@ -96,7 +96,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
 
                         const SizedBox(height: 16),
 
-                        /// Description
+                        // Description
                         const Text(
                           "Your password has been changed successfully.\n"
                               "You can now use your new password to log in to your account.",
@@ -108,9 +108,9 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
                           ),
                         ),
 
-                        const Spacer(), // ✅ NOW SAFE
+                        const Spacer(),
 
-                        /// Login Button
+                        // Login Button
                         PrimaryButton(
                           title: "Go to Login",
                           icon: Icons.arrow_forward,
@@ -127,7 +127,7 @@ class PasswordSuccessfullyUpdatedScreen extends StatelessWidget {
 
                         const SizedBox(height: 20),
 
-                        /// Help Link
+                        // Help Link
                         TextButton(
                           onPressed: () {},
                           child: const Text(

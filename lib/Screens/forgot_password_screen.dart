@@ -41,7 +41,7 @@ class ForgotPassword extends StatelessWidget {
                       children: [
                         const SizedBox(height: 16),
 
-                        /// Back Button
+                        // Back Button
                         CircleAvatar(
                           radius: 22,
                           backgroundColor: Colors.white,
@@ -53,7 +53,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 60),
 
-                        /// Icon
+                        // Icon
                         Center(
                           child: Container(
                             width: 110,
@@ -72,7 +72,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 40),
 
-                        /// Title
+                        // Title
                         const Center(
                           child: Text(
                             "Forgot Password?",
@@ -86,7 +86,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 16),
 
-                        /// Description
+                        // Description
                         const Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 12),
@@ -104,7 +104,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 40),
 
-                        /// Email label
+                        // Email label
                         const Text(
                           "Email Address",
                           style: TextStyle(
@@ -116,7 +116,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 8),
 
-                        /// Email field
+                        // Email field
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -137,7 +137,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const SizedBox(height: 30),
 
-                        /// Button
+                        // Button
                         PrimaryButton(
                           title: "Send code",
                           icon: Icons.arrow_forward,
@@ -155,7 +155,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const Spacer(),
 
-                        /// Bottom Login link
+                        // Bottom Login link
                         Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

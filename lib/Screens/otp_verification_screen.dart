@@ -54,15 +54,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // ✅ Fix Android black bottom bar
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarIconBrightness: Brightness.dark,
-      ),
-    );
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -93,7 +84,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       children: [
                         const SizedBox(height: 16),
 
-                        /// Back button
+                        // Back button
                         Align(
                           alignment: Alignment.centerLeft,
                           child: IconButton(
@@ -105,7 +96,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// Icon
+                        // Icon
                         Container(
                           width: 110,
                           height: 110,
@@ -122,7 +113,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// Title
+                        // Title
                         const Text(
                           "OTP Verification",
                           style: TextStyle(
@@ -134,7 +125,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 12),
 
-                        /// Subtitle
+                        // Subtitle
                         Text(
                           "We've sent a 4-digit verification\ncode to ${widget.email}",
                           textAlign: TextAlign.center,
@@ -147,7 +138,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// OTP boxes
+                        // OTP boxes
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: List.generate(4, (index) {
@@ -212,7 +203,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 8),
 
-                        /// Timer
+                        // Timer
                         Text(
                           "00:${seconds.toString().padLeft(2, '0')}",
                           style: const TextStyle(
@@ -223,7 +214,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// Verify Button
+                        // Verify Button
                         PrimaryButton(
                           title: "Verify",
                           icon: Icons.arrow_forward,
@@ -243,8 +234,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                               : null,
                         ),
 
-                        const Spacer(), // ✅ pushes content correctly
-
+                        const Spacer(), 
                         const SizedBox(height: 30),
                       ],
                     ),

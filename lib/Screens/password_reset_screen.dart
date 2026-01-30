@@ -66,7 +66,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                       children: [
                         const SizedBox(height: 16),
 
-                        /// Back
+                        // Back
                         CircleAvatar(
                           radius: 22,
                           backgroundColor: Colors.white,
@@ -78,7 +78,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// Title
+                        // Title
                         const Center(
                           child: Text(
                             "New Password",
@@ -92,7 +92,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 12),
 
-                        /// Subtitle
+                        // Subtitle
                         const Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -110,7 +110,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// New Password
+                        // New Password
                         const Text(
                           "New Password",
                           style: TextStyle(
@@ -132,7 +132,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 24),
 
-                        /// Confirm Password
+                        // Confirm Password
                         const Text(
                           "Confirm Password",
                           style: TextStyle(
@@ -153,7 +153,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 30),
 
-                        /// Requirements
+                        // Requirements
                         const Text(
                           "PASSWORD REQUIREMENTS:",
                           style: TextStyle(
@@ -171,7 +171,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
 
                         const SizedBox(height: 40),
 
-                        /// Button
+                        // Button
                         SizedBox(
                           width: double.infinity,
                           height: 56,
@@ -232,7 +232,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                           ),
                         ),
 
-                        const Spacer(), // ✅ replaces fake SizedBox(300)
+                        const Spacer(),
 
                         const SizedBox(height: 24),
                       ],
@@ -247,7 +247,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
     );
   }
 
-  /// Password Field
+  // Password Field
   Widget buildPasswordField({
     required TextEditingController controller,
     required String hint,
