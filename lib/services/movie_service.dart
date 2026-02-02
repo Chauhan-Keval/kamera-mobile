@@ -14,9 +14,11 @@ class MovieService {
     final response = await http.get(Uri.parse("$_baseUrl/Movies"));
 
     if (response.statusCode == 200) {
+      // debugPrint(response.body);
       final List data = jsonDecode(response.body);
       return data.map((e) => Movie.fromJson(e)).toList();
-    } else {
+    }
+    else {
       throw Exception("Failed to load movies");
     }
   }
