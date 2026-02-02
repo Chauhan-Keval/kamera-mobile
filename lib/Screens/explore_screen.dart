@@ -60,7 +60,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: CircularProgressIndicator(),
                       );
                     }
-
                     if (snapshot.hasError) {
                       return Center(
                         child: Text(

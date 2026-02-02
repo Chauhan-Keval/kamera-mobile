@@ -180,7 +180,12 @@
                     }
 
                     if (snapshot.hasError) {
-                      return const Center(child: Text("Failed to load movies"));
+                      return Center(
+                        child: Text(
+                          snapshot.error.toString(),
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      );
                     }
 
                     final movies = snapshot.data!;
