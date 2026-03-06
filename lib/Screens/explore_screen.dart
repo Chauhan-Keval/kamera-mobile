@@ -21,99 +21,94 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF2FAFF),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Explore",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1677FF),
+        child: FutureBuilder<List<Movie>>(
+          future: MovieService.fetchMovies(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  style: const TextStyle(color: Colors.red),
                 ),
-              ),
+              );
+            }
 
-              const SizedBox(height: 20),
+            List<Movie> movies = snapshot.data ?? [];
 
-              searchBar(),
+            // SEARCH FILTER
+            if (searchQuery.isNotEmpty) {
+              movies = movies
+                  .where((m) => m.title
+                  .toLowerCase()
+                  .contains(searchQuery.toLowerCase()))
+                  .toList();
+            }
 
-              const SizedBox(height: 20),
+            // GENRE FILTER
+            if (selectedGenreIndex != 0) {
+              final selectedGenre = genres[selectedGenreIndex];
+              movies = movies
+                  .where((m) =>
+              m.genre.toLowerCase() ==
+                  selectedGenre.toLowerCase())
+                  .toList();
+            }
 
-              genreChips(),
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Explore",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1677FF),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    searchBar(),
+                    const SizedBox(height: 20),
+                    genreChips(),
+                    const SizedBox(height: 30),
+                    popularHeader(),
+                    const SizedBox(height: 16),
 
-              const SizedBox(height: 30),
-
-              popularHeader(),
-
-              const SizedBox(height: 16),
-
-              // MOVIE GRID
-              Expanded(
-                child: FutureBuilder<List<Movie>>(
-                  future: MovieService.fetchMovies(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(
-                          snapshot.error.toString(),
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                      );
-                    }
-
-                    List<Movie> movies = snapshot.data ?? [];
-
-                    // SEARCH FILTER
-                    if (searchQuery.isNotEmpty) {
-                      movies = movies
-                          .where((m) => m.title
-                          .toLowerCase()
-                          .contains(searchQuery.toLowerCase()))
-                          .toList();
-                    }
-
-                    // GENRE FILTER
-                    if (selectedGenreIndex != 0) {
-                      final selectedGenre = genres[selectedGenreIndex];
-                      movies = movies
-                          .where((m) =>
-                      m.genre.toLowerCase() ==
-                          selectedGenre.toLowerCase())
-                          .toList();
-                    }
-
-                    // EMPTY STATE
-                    if (movies.isEmpty) {
-                      return const Center(
-                        child: Text(
-                          "No movies found",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
+                    // MOVIE GRID
+                    if (movies.isEmpty)
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(40),
+                          child: Text(
+                            "No movies found",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
-                      );
-                    }
-
-                    return ExploreMovieGrid(movies: movies);
-                  },
+                      )
+                    else
+                      ExploreMovieGrid(
+                        movies: movies,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                      ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
+
     );
   }
-
   //  Search Bar
   Widget searchBar() {
     return Container(
