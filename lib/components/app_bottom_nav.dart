@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamera/Screens/find_people_screen.dart';
 
 import '../Screens/bookmark_screen.dart';
 import '../Screens/discover_people_screen.dart';
@@ -19,7 +20,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
   final List<Widget> pages = [
     const HomeScreen(),
     const ExploreScreen(),
-    const DiscoverPeopleScreen(),
+    const FindPeopleScreen(),
     const BookmarkScreen(),
     const ProfileScreen(),
   ];

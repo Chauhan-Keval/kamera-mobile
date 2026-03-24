@@ -17,7 +17,7 @@ class FollowButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         decoration: BoxDecoration(
-          color: isFollowing ? Colors.transparent : const Color(0xFF7DB7D1),
+          color: isFollowing ? Colors.transparent : const Color(0xFF1677FF),
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
             color: const Color(0xFF7DB7D1),
@@ -26,7 +26,7 @@ class FollowButton extends StatelessWidget {
         child: Text(
           isFollowing ? "Following" : "Follow",
           style: TextStyle(
-            color: isFollowing ? const Color(0xFF7DB7D1) : Colors.white,
+            color: isFollowing ? const Color(0xFF1677FF) : Colors.white,
             fontWeight: FontWeight.w600,
           ),
         ),

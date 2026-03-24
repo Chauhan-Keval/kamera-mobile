@@ -35,6 +35,26 @@ class _FindPeopleScreenState extends State<FindPeopleScreen> {
       imageUrl: "https://i.pravatar.cc/150?img=4",
     ),
   ];
+  String searchQuery = "";
+  List<Person> filteredPeople = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredPeople = people;
+  }
+
+  void searchPeople(String query) {
+    setState(() {
+      searchQuery = query;
+
+      filteredPeople = people.where((person) {
+        return person.name
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }).toList();
+    });
+  }
 
   final List<Community> communities = [
     Community(
@@ -52,7 +72,7 @@ class _FindPeopleScreenState extends State<FindPeopleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F9FA),
+        backgroundColor: const Color(0xFFF2FAFF),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -60,7 +80,6 @@ class _FindPeopleScreenState extends State<FindPeopleScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const Center(
                   child: Text(
                     "Find People",
@@ -68,42 +87,35 @@ class _FindPeopleScreenState extends State<FindPeopleScreen> {
                         fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 _searchBar(),
-
                 const SizedBox(height: 30),
-
                 const Text(
                   "Suggested for You",
                   style: TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-
                 const SizedBox(height: 20),
-
                 ListView.builder(
-                  itemCount: people.length,
+                  itemCount: filteredPeople.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return PeopleTile(
-                      person: people[index],
+                      person: filteredPeople[index],
                       onFollowTap: () {
                         setState(() {
-                          people[index] = Person(
-                            name: people[index].name,
-                            subtitle: people[index].subtitle,
-                            imageUrl: people[index].imageUrl,
-                            isFollowing: !people[index].isFollowing,
+                          filteredPeople[index] = Person(
+                            name: filteredPeople[index].name,
+                            subtitle: filteredPeople[index].subtitle,
+                            imageUrl: filteredPeople[index].imageUrl,
+                            isFollowing: !filteredPeople[index].isFollowing,
                           );
                         });
                       },
                     );
                   },
                 ),
-
                 const SizedBox(height: 30),
 
                 const Text(
@@ -140,16 +152,23 @@ class _FindPeopleScreenState extends State<FindPeopleScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Icon(Icons.search, color: Colors.grey),
-          SizedBox(width: 10),
-          Text(
-            "Search for film lovers...",
-            style: TextStyle(color: Colors.grey),
+          const Icon(Icons.search, color: Colors.grey),
+          const SizedBox(width: 10),
+
+          Expanded(
+            child: TextField(
+              onChanged: searchPeople,
+              decoration: const InputDecoration(
+                hintText: "Search for film lovers...",
+                border: InputBorder.none,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
