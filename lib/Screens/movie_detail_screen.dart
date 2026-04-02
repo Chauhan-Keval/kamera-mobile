@@ -96,10 +96,14 @@ class MovieDetailScreen extends StatelessWidget {
                 Positioned(
                   top: 50,
                   right: 20,
+<<<<<<< HEAD
+                  child: circleIcon(Icons.favorite_border, () {}),
+=======
                   child: circleIcon(Icons.favorite_border, () {
                     // TOGGLE WISHLIST
 
                   }),
+>>>>>>> origin/main
                 ),
               ],
             ),
