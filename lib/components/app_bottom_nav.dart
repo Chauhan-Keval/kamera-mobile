@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:kamera/Screens/find_people_screen.dart';
 
 import '../Screens/bookmark_screen.dart';
@@ -21,15 +22,24 @@ class _AppBottomNavState extends State<AppBottomNav> {
   final List<Widget> pages = [
     const HomeScreen(),
     const ExploreScreen(),
+
+    const DiscoverPeopleScreen(),
+
     const FindPeopleScreen(),
+
     const PlaylistScreen(),
+
+    const BookmarkScreen(),
+
     const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         backgroundColor: const Color(0xFFF2FAFF),
+
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         transitionBuilder: (child, animation) {
@@ -109,6 +119,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
       ),
     );
   }
+
 }
 
 
