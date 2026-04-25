@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
+
 import 'package:kamera/Screens/find_people_screen.dart';
->>>>>>> origin/main
 
 import '../Screens/bookmark_screen.dart';
 import '../Screens/discover_people_screen.dart';
 import '../Screens/explore_screen.dart';
 import '../Screens/home_screen.dart';
+import '../Screens/playlist_screen.dart';
 import '../Screens/profile_screen.dart';
 
 class AppBottomNav extends StatefulWidget {
@@ -23,22 +22,24 @@ class _AppBottomNavState extends State<AppBottomNav> {
   final List<Widget> pages = [
     const HomeScreen(),
     const ExploreScreen(),
-<<<<<<< HEAD
+
     const DiscoverPeopleScreen(),
-=======
+
     const FindPeopleScreen(),
->>>>>>> origin/main
+
+    const PlaylistScreen(),
+
     const BookmarkScreen(),
+
     const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-=======
+
         backgroundColor: const Color(0xFFF2FAFF),
->>>>>>> origin/main
+
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         transitionBuilder: (child, animation) {
@@ -118,11 +119,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
       ),
     );
   }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/main
 }
 
 
