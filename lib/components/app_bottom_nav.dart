@@ -5,6 +5,7 @@ import '../Screens/bookmark_screen.dart';
 import '../Screens/discover_people_screen.dart';
 import '../Screens/explore_screen.dart';
 import '../Screens/home_screen.dart';
+import '../Screens/playlist_screen.dart';
 import '../Screens/profile_screen.dart';
 
 class AppBottomNav extends StatefulWidget {
@@ -21,7 +22,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
     const HomeScreen(),
     const ExploreScreen(),
     const FindPeopleScreen(),
-    const BookmarkScreen(),
+    const PlaylistScreen(),
     const ProfileScreen(),
   ];
 

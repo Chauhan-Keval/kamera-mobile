@@ -1,6 +1,7 @@
 import 'cast.dart';
 
 class Movie {
+  final String id;
   final String title;
   final String genre;
   final String year;
@@ -14,6 +15,7 @@ class Movie {
 
 
   Movie({
+    required this.id,
     required this.title,
     required this.genre,
     required this.year,
@@ -27,17 +29,33 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      title: json['title'],
-      genre: json['genre'],
-      year: json['year'],
-      category: json['category'],
-      duration: json['duration'],
-      rating: (json['rating'] as num).toDouble(),
+      id: json['id']?.toString() ?? "",
+      title: json['title'] ?? "",
+      genre: json['genre'] ?? "",
+      year: json['year'] ?? "",
+      category: json['category'] ?? "",
+      duration: json['duration'] ?? "",
+      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       imageUrl: json['imageUrl'] ?? "",
-      cast: (json['cast'] as List)
-          .map((e) => Cast.fromJson(e))
-          .toList(),
+      cast: (json['cast'] is List)
+          ? (json['cast'] as List).map((e) => Cast.fromJson(e)).toList()
+          : [],
       storyline: json['storyline'] ?? "No storyline available.",
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'genre': genre,
+      'year': year,
+      'category': category,
+      'duration': duration,
+      'rating': rating,
+      'imageUrl': imageUrl,
+      'cast': cast.map((e) => e.toJson()).toList(),
+      'storyline': storyline,
+    };
   }
 }

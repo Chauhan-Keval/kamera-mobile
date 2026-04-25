@@ -13,4 +13,11 @@ class Cast {
       image: json['image'] ?? "",
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'image': image,
+    };
+  }
 }
