@@ -25,6 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   String searchQuery = "";
+  late Future<List<Movie>> futureMovies;
+
+  @override
+  void initState() {
+    super.initState();
+    futureMovies = MovieService.fetchMovies();
+  }
 
   List<Movie> filterByCategory(List<Movie> movies) {
     if (selectedCategoryIndex == 0) {
@@ -164,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
 
               FutureBuilder<List<Movie>>(
-                future: MovieService.fetchMovies(),
+                future: futureMovies,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return SizedBox(
@@ -185,12 +192,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   // CATEGORY
                   final categoryFiltered = filterByCategory(movies);
 
+                  // SEARCH FILTER
+                  var filteredMovies = categoryFiltered;
+                  if (searchQuery.isNotEmpty) {
+                    filteredMovies = filteredMovies
+                        .where((m) => m.title.toLowerCase().contains(searchQuery.toLowerCase()))
+                        .toList();
+                  }
+
                   // SECTION FILTER
-                  final trendingMovies = categoryFiltered
+                  final trendingMovies = filteredMovies
                       .where((m) => m.category == "Trending")
                       .toList();
 
-                  final recommendedMovies = categoryFiltered
+                  final recommendedMovies = filteredMovies
                       .where((m) => m.category == "Recommended")
                       .toList();
 

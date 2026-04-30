@@ -13,6 +13,13 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   int selectedGenreIndex = 0;
   String searchQuery = "";
+  late Future<List<Movie>> futureMovies;
+
+  @override
+  void initState() {
+    super.initState();
+    futureMovies = MovieService.fetchMovies();
+  }
 
   final List<String> genres = ["All", "Sci-Fi", "Drama", "Horror"];
 
@@ -22,7 +29,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       backgroundColor: const Color(0xFFF2FAFF),
       body: SafeArea(
         child: FutureBuilder<List<Movie>>(
-          future: MovieService.fetchMovies(),
+          future: futureMovies,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());

@@ -23,7 +23,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
 
   int selectedTab = 0;
   void openCreatePopup() {
-    showModalBottomSheet(
+    showDialog(
       context: context,
       builder: (_) => CreatePlaylistSheet(
         onCreate: (name, isPrivate) async {
