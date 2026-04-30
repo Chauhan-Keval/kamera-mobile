@@ -12,20 +12,18 @@ class MovieService {
     await Future.delayed(const Duration(seconds: 1));
 
     final response = await http.get(Uri.parse("$_baseUrl/Movies"));
-
     if (response.statusCode == 200) {
-<<<<<<< HEAD
       final List data = jsonDecode(response.body);
       return data.map((e) => Movie.fromJson(e)).toList();
     } else {
-=======
-      // debugPrint(response.body);
-      final List data = jsonDecode(response.body);
-      return data.map((e) => Movie.fromJson(e)).toList();
-    }
-    else {
->>>>>>> origin/main
-      throw Exception("Failed to load movies");
+      // Try to parse a response body even on non-200 replies, otherwise throw
+      try {
+        final List data = jsonDecode(response.body);
+        return data.map((e) => Movie.fromJson(e)).toList();
+      } catch (_) {
+        throw Exception(
+            "Failed to load movies (status: ${response.statusCode})");
+      }
     }
   }
 }
