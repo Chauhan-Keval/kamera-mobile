@@ -15,9 +15,9 @@ class ExploreMovie extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: movies.length,
       itemBuilder: (context, index) {
-        // return ExploreMovieCard(
-        //   // movie: movies[index],
-        // );
+        return ExploreMovieCard(
+           movie: movies[index],
+        );
       },
     );
   }

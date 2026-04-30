@@ -10,18 +10,13 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFFF2FAFF),
-              Color(0xFFE9F4FF),
-            ],
+            colors: [Color(0xFFF2FAFF), Color(0xFFE9F4FF)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -32,9 +27,7 @@ class ForgotPassword extends StatelessWidget {
               return SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
-                  ),
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: IntrinsicHeight(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +148,7 @@ class ForgotPassword extends StatelessWidget {
 
                         const Spacer(),
 
-                        // Bottom Login link
+                        //*  *// Bottom Login link
                         Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

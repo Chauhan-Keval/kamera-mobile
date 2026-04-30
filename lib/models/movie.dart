@@ -37,9 +37,9 @@ class Movie {
       duration: json['duration'] ?? "",
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       imageUrl: json['imageUrl'] ?? "",
-      cast: (json['cast'] is List)
-          ? (json['cast'] as List).map((e) => Cast.fromJson(e)).toList()
-          : [],
+      cast: (json['cast'] as List?)
+          ?.map((e) => Cast.fromJson(Map<String, dynamic>.from(e)))
+          .toList() ?? [],
       storyline: json['storyline'] ?? "No storyline available.",
     );
   }

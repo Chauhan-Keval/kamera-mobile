@@ -30,11 +30,9 @@ class Playlist {
       imageUrl: json['imageUrl'] ?? "",
 
       // ✅ FIXED HERE
-      movies: (json['movies'] is List)
-          ? (json['movies'] as List)
-          .map((e) => Movie.fromJson(e))
-          .toList()
-          : [],
+      movies: (json['movies'] as List?)
+          ?.map((e) => Movie.fromJson(Map<String, dynamic>.from(e)))
+          .toList() ?? [],
     );
   }
 }

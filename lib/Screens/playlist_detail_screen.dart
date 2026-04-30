@@ -41,7 +41,9 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const AddMovieScreen(),
+                  builder: (_) => AddMovieScreen(
+                    existingMovieIds: movies.map((m) => m.id).toList(),
+                  ),
                 ),
               );
 
@@ -88,6 +90,21 @@ class _PlaylistDetailScreenState extends State<PlaylistDetailScreen> {
             ),
             title: Text(movie.title),
             subtitle: Text(movie.genre),
+            trailing: IconButton(
+              icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
+              onPressed: () async {
+                final success = await PlaylistService.removeMovieFromPlaylist(
+                  playlist: widget.playlist,
+                  movieId: movie.id,
+                );
+
+                if (success) {
+                  setState(() {
+                    movies.removeAt(index);
+                  });
+                }
+              },
+            ),
             onTap: () {
               Navigator.push(
                 context,

@@ -3,7 +3,9 @@ import '../models/movie.dart';
 import '../services/movie_service.dart';
 
 class AddMovieScreen extends StatelessWidget {
-  const AddMovieScreen({super.key});
+  final List<String> existingMovieIds;
+
+  const AddMovieScreen({super.key, this.existingMovieIds = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class AddMovieScreen extends StatelessWidget {
             return Center(child: Text("Error: ${snapshot.error}"));
           }
 
-          final movies = snapshot.data ?? [];
+          final movies = (snapshot.data ?? [])
+              .where((m) => !existingMovieIds.contains(m.id))
+              .toList();
 
           if (movies.isEmpty) {
             return const Center(child: Text("No movies available"));

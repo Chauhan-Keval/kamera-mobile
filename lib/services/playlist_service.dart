@@ -106,4 +106,29 @@ class PlaylistService {
 
     return response.statusCode == 200;
   }
+
+  /// REMOVE MOVIE FROM PLAYLIST
+  static Future<bool> removeMovieFromPlaylist({
+    required Playlist playlist,
+    required String movieId,
+  }) async {
+    final updatedMovies = playlist.movies
+        .where((m) => m.id != movieId)
+        .map((m) => m.toJson())
+        .toList();
+
+    final response = await http.put(
+      Uri.parse("$baseUrl/playlists/${playlist.id}"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "movies": updatedMovies,
+        "movieCount": updatedMovies.length,
+        "updatedTime": "Now",
+      }),
+    );
+
+    print("REMOVE MOVIE STATUS: ${response.statusCode}");
+
+    return response.statusCode == 200;
+  }
 }

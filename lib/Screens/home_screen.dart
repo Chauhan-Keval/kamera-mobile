@@ -5,7 +5,7 @@ import 'package:kamera/components/trending_movie.dart';
 import 'package:kamera/services/movie_service.dart';
 import '../models/movie.dart';
 import 'bookmark_screen.dart';
-import 'discover_people_screen.dart';
+
 import 'explore_screen.dart';
 
 class HomeScreen extends StatefulWidget {
